@@ -1,0 +1,37 @@
+<beans xmlns = "http://www.springframework.org/schema/beans" 
+   xmlns:batch = "http://www.springframework.org/schema/batch" 
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" 
+   xmlns:util = "http://www.springframework.org/schema/util" 
+   xsi:schemaLocation = "http://www.springframework.org/schema/batch 
+   
+      http://www.springframework.org/schema/batch/spring-batch-2.2.xsd 
+      http://www.springframework.org/schema/beans 
+      http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">  
+   
+   <import resource = "/custom.xml" />  
+  <!--  <bean id = "tutorial" class = "Tutorial" scope = "prototype" /> 
+   <bean id = "itemProcessor" class = "CustomItemProcessor" />  --> 
+   <bean id="tasklet" class="MyCustomTasklet"/>
+   <batch:job id = "helloWorldJob"> 
+      <batch:step id = "step1"> 
+         <batch:tasklet ref="tasklet"/> 
+      </batch:step> 
+   </batch:job> 
+         
+<!--    <bean id = "mysqlItemReader" 
+      class = "org.springframework.batch.item.database.JdbcCursorItemReader" > 
+      <property name = "dataSource" ref = "dataSource" /> 
+      <property name = "sql" value = "select * from details.tutorialsdata" /> 
+      <property name = "rowMapper">  
+         <bean class = "TutorialRowMapper" /> 
+      </property> 
+   </bean>
+   
+   <bean id = "flatFileItemWriter" 
+      class = " org.springframework.batch.item.file.FlatFileItemWriter">      
+      <property name = "resource" value = "file:target/outputfiles/employee_output.txt"/> 
+      <property name = "lineAggregator"> 
+         <bean class = " org.springframework.batch.item.file.transform.PassThroughLineAggregator"/> 
+      </property> 
+   </bean>  -->
+</beans> 
